@@ -39,18 +39,18 @@ export default function TodoPage() {
       );
     }
   };
-  return(
+  return (
     <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-gray-100">
       <div className="w-full max-w-md space-y-4">
         <h1 className="text-2xl font-bold text-center text-black">TODO LIST</h1>
-        <TodoInput input={input} setInput={setInput} addTodo={addTodo}/>
+        <TodoInput input={input} setInput={setInput} addTodo={addTodo} />
         <TodoList
-        todos={todos}
-        toggeleDone={toggeleDone}
-        deleteTodo={deleteTodo}
-        editTodo={editTodo}
+          todos={todos}
+          toggeleDone={toggeleDone}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
         />
       </div>
     </main>
-  )
+  );
 }
