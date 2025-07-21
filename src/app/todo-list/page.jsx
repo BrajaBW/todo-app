@@ -9,7 +9,7 @@ export default function TodoPage() {
   //menambah todo baru
   const addTodo = () => {
     if (!input.trim()) return;
-    setTodos([...todos, { id: Date.now(), text: input, done: false }]);
+    setTodos([...todos, { id:crypto.randomUUID(), text: input, done: false }]);
     setInput("");
   };
 
@@ -17,7 +17,7 @@ export default function TodoPage() {
   const toggeleDone = (id) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, done: !todo.done } : todo
+        todo.id === id ? { ...todos, done: !todo.done } : todo
       )
     );
   };
@@ -28,9 +28,13 @@ export default function TodoPage() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  //pemberitahuan harap di isi 
+  // const hastTodos = todos.length > 0;
+
+
   //editTodo
   const editTodo = (id) => {
-    const newText = prompt("Perbarui Tugas");
+    const newText = prompt("edit tugas");
     if (newText !== null && newText.trim() !== "") {
       setTodos(
         todos.map((todo) =>
@@ -41,15 +45,38 @@ export default function TodoPage() {
   };
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-gray-100">
-      <div className="w-full max-w-md space-y-4">
-        <h1 className="text-2xl font-bold text-center text-black">TODO LIST</h1>
+      <div className="max-w-md space-y-4">
+        <h1 className="text-6xl font-bold text-center text-black">TODO LIST</h1>
         <TodoInput input={input} setInput={setInput} addTodo={addTodo} />
+        
+        {/* {2.tenarry} */}
+        {/* {hastTodos ? (
+          <TodoList
+            todos={todos}
+            toggeleDone={toggeleDone}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
+          />
+        ) : (
+          <p className="text-center text-black">KOSONG HARAP DI ISI</p>
+        )} */}
+
+        {/* {3. logical &&} */}
+        {/* {
+          hastTodos && <TodoList
+            todos={todos}
+            toggeleDone={toggeleDone}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
+          />
+        }
+        {!hastTodos && <p className="text-center text-black">KOSONG HARAP DI ISI</p> } */}
         <TodoList
-          todos={todos}
-          toggeleDone={toggeleDone}
-          deleteTodo={deleteTodo}
-          editTodo={editTodo}
-        />
+            todos={todos}
+            toggeleDone={toggeleDone}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
+          />
       </div>
     </main>
   );
